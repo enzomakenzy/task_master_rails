@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+thead > tr {
+  font-size: 1.4em;
+  margin-bottom: 3em;
+  height: 60px;
+}
+
+td {
+  font-size: 1.2em;
+  height: 60px;
+}
+
+input[type="checkbox"] {
+  height: 1.5em;
+  width: 1.5em;
+  margin-top: 4px;
+  appearance: none;
+  border: 1px solid #8A8A8A;
+  border-radius: 4px;
+  background-color: transparent;
+  position: relative;
+  transition: background-color 0.1s, border-color 0.1s;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+  background-color: #272727;
+}
+
+input[type="checkbox"]:active {
+  background-color: #212121;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px; 
+  height: 12px;
+  background-image: url('/assets/vector.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cutLine {
+  text-decoration: line-through;
+  text-decoration-color: #6A15AF;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #212121;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3b3b3b;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #414141;
+}

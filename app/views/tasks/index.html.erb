@@ -1,0 +1,41 @@
+<section class="flex justify-center items-center flex-col w-8/12 pb-10">
+
+  <%= render "tasks/form", task: @task %>
+  
+  <table class="w-7/12 text-center">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Tarefas</th>
+        <th colspan="2">Ações</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tasks">
+      <% @tasks.each do |task| %>
+        <tr id="task_<%= task.id %>" data-controller="cutline">
+          <td>
+            <%= form_with(model: task, url: task_path(task), method: :patch) do |form| %>
+              <%= form.check_box :status, checked: task.status, onchange: "this.form.submit();", data: { action: "change->cutline#scratch" } %>
+            <% end %>
+          </td>
+          <td>
+            <p data-cutline-target="scratchtask">
+              <%= task.description %>
+            </p>
+          </td>
+          <td>
+            <%= link_to edit_task_path(task) do %>
+              <%= image_tag "edit-desk.svg", class: "m-auto" %>
+            <% end %>
+          </td>
+          <td>
+            <%= button_to task, method: :delete do %>
+              <%= image_tag "delete-desk.svg", class: "m-auto" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

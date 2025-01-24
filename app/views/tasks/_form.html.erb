@@ -1,0 +1,23 @@
+<%= turbo_frame_tag "new_task" do %>
+  <%= form_with(model: task, data: { turbo_frame: "new_task" }, class: "flex justify-center items-center gap-12 mb-12") do |form| %>
+    <div>
+      <%= form.text_field :description, autocomplete: :off, placeholder: "Tarefa...", class: "bg-input outline-none px-4 py-3 w-96 text-lg rounded-xl placeholder:text-placeholderColorFont" %>
+    </div>
+
+    <div>
+      <%= button_to type: "submit" do %>
+        <%= image_tag "verifica.png", alt: "Submit" %>
+      <% end %>
+    </div>
+
+    <% if task.errors.any? %>
+      <ul>
+        <% task.errors.each do |error| %>
+          <li class="font-semibold text-lg py-3 text-error">
+            <%= error.full_message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+<% end %>

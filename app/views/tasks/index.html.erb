@@ -1,6 +1,7 @@
 <section class="flex justify-center items-center flex-col w-8/12 pb-10">
-
-  <%= render "tasks/form", task: @task %>
+  <%= turbo_frame_tag "new_task" do %>
+    <%= render "tasks/form", task: @task %>
+  <% end %>
   
   <table class="w-7/12 text-center">
     <thead>
@@ -13,14 +14,14 @@
     </thead>
     <tbody id="tasks">
       <% @tasks.each do |task| %>
-        <tr id="task_<%= task.id %>" data-controller="cutline">
+        <tr data-controller="cutline">
           <td>
             <%= form_with(model: task, url: task_path(task), method: :patch) do |form| %>
               <%= form.check_box :status, checked: task.status, onchange: "this.form.submit();", data: { action: "change->cutline#scratch" } %>
             <% end %>
           </td>
           <td>
-            <p data-cutline-target="scratchtask">
+            <p>
               <%= task.description %>
             </p>
           </td>

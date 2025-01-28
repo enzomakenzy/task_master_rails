@@ -46,6 +46,11 @@ input[type="checkbox"]:active {
   background-color: #212121;
 }
 
+input[type="checkbox"]:checked {
+
+  background-color: #6A15AF;
+}
+
 input[type="checkbox"]:checked::after {
   content: "";
   position: absolute;
@@ -54,7 +59,7 @@ input[type="checkbox"]:checked::after {
   transform: translate(-50%, -50%);
   width: 12px; 
   height: 12px;
-  background-image: url('/assets/vector.png');
+  background-image: url('/assets/check.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -62,6 +67,7 @@ input[type="checkbox"]:checked::after {
 .cutLine {
   text-decoration: line-through;
   text-decoration-color: #6A15AF;
+  color: #626262;
 }
 
 ::-webkit-scrollbar {

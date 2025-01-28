@@ -1,23 +1,16 @@
-<%= turbo_frame_tag "new_task" do %>
-  <%= form_with(model: task, data: { turbo_frame: "new_task" }, class: "flex justify-center items-center gap-12 mb-12") do |form| %>
-    <div>
-      <%= form.text_field :description, autocomplete: :off, placeholder: "Tarefa...", class: "bg-input outline-none px-4 py-3 w-96 text-lg rounded-xl placeholder:text-placeholderColorFont" %>
-    </div>
+ <div data-controller="deletetext">
+   <%= form_with(model: task, data: { turbo_frame: "new_task" }, class: "flex justify-center items-center gap-12 mb-4") do |form| %>
+      <div>
+        <%= form.text_field :description, autocomplete: :off, placeholder: "Tarefa...", data: { deletetext_target: "word" }, class: "bg-input outline-none px-4 py-3 w-96 text-lg rounded-xl placeholder:text-placeholderColorFont" %>
+      </div>
+      <button type="submit" class="bg-transparent border-0 cursor-pointer">
+        <%= image_tag "verifica.png", alt: "Submit", class: "h-10 w-10" %>
+      </button>
+   <% end %>
+ </div>
 
-    <div>
-      <%= button_to type: "submit" do %>
-        <%= image_tag "verifica.png", alt: "Submit" %>
-      <% end %>
-    </div>
-
-    <% if task.errors.any? %>
-      <ul>
-        <% task.errors.each do |error| %>
-          <li class="font-semibold text-lg py-3 text-error">
-            <%= error.full_message %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+<% if task.errors.any? %>
+  <% task.errors.each do |error| %>
+    <span class="block font-semibold text-lg py-3 text-error mb-8 text-center"><%= error.full_message %></span>
   <% end %>
 <% end %>

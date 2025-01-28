@@ -18,7 +18,7 @@ class TasksController < ApplicationController
         format.html { redirect_to root_path, notice: "Tarefa adicionada com sucesso!" }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace("new_task", partial: "tasks/form", locals: { task: @task }) }
-        format.html { redirect_to root_path, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end

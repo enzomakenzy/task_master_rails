@@ -26,6 +26,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
+        format.turbo_stream
         format.html { redirect_to root_path, notice: "Tarefa atualizada com sucesso!" }
       else
         format.html { render :edit, status: :unprocessable_entity }

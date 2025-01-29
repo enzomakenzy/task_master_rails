@@ -1,0 +1,11 @@
+<turbo-frame id="task_<%= task.id %>">
+  <%= form_with model: @task, url: task_path(@task), method: :patch do |form| %>
+    <td class="flex">
+      <%= form.text_field :description, autocomplete: :off, value: @task.description, placeholder: "Tarefa...", class: "bg-input outline-none px-4 py-3 w-96 text-lg rounded-xl placeholder:text-placeholderColorFont" %>
+      
+      <button type="submit" class="bg-transparent border-0 cursor-pointer">
+        <%= image_tag "verifica.png", alt: "Atualizar tarefa", class: "h-10 w-10" %>
+      </button>
+    </td>
+  <% end %>
+</turbo-frame>

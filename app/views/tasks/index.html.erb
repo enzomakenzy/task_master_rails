@@ -13,30 +13,32 @@
       </tr>
     </thead>
     <tbody id="tasks">
-      <% @tasks.each do |task| %>
-        <tr data-controller="cutline">
-          <td>
-            <%= form_with(model: task, url: task_path(task), method: :patch) do |form| %>
-              <%= form.check_box :status, checked: task.status, onchange: "this.form.submit();", data: { action: "change->cutline#scratch" } %>
-            <% end %>
-          </td>
-          <td>
-            <p>
-              <%= task.description %>
-            </p>
-          </td>
-          <td>
-            <%= link_to edit_task_path(task) do %>
-              <%= image_tag "edit-desk.svg", class: "m-auto" %>
-            <% end %>
-          </td>
-          <td>
-            <%= button_to task, method: :delete do %>
-              <%= image_tag "delete-desk.svg", class: "m-auto" %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+        <% @tasks.each do |task| %>
+          <tr data-controller="cutline">
+            <td>
+              <%= form_with(model: task, url: task_path(task), method: :patch) do |form| %>
+                <%= form.check_box :status, checked: task.status, onchange: "this.form.submit();", data: { action: "change->cutline#scratch" } %>
+              <% end %>
+            </td>
+            <td>
+              <turbo-frame id="task_<%= task.id %>">
+                <p data-cutline-target="task">
+                  <%= task.description %>
+                </p>
+              </turbo-frame>
+            </td>
+            <td>
+              <%= link_to edit_task_path(task), data: { turbo_fram: "task_#{task.id}" } do %>
+                <%= image_tag "edit-desk.svg", class: "m-auto" %>
+              <% end %>
+            </td>
+            <td>
+              <%= button_to task, method: :delete do %>
+                <%= image_tag "delete-desk.svg", class: "m-auto" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
     </tbody>
   </table>
 </section>
